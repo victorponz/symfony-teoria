@@ -1,4 +1,8 @@
-# Instalación de Symfony y primeros pasos
+---
+typora-copy-images-to: assets
+---
+
+# 1. Instalación de Symfony y primeros pasos
 
 [Symfony](http://symfony.com/) es un framework PHP para desarrollo de aplicaciones web así como un conjunto de componentes PHP para usar en tus proyectos.
 
@@ -6,11 +10,11 @@ Hasta ahora, hemos desarrollado todo nuestro código partiendo sólo de las herr
 
 `Symfony`, y cualquier otro framework `PHP`,  nos ayuda a trabajar con todas estas cuestiones de una manera más sencilla y profesional, permitiendo definir nuestra aplicación a través de controladores.
 
-Para comprobar esta diferencias, visitad la página [Symfony versus flat PHP](http://symfony.com/doc/2.4/book/from_flat_php_to_symfony2.html)
+Para comprobar esta diferencias, visitad la página [Symfony versus flat PHP](https://symfony.com/doc/current/introduction/from_flat_php_to_symfony.htmll)
 
 
 
-## Instalar Symfony
+## 1.1 Instalar Symfony
 
 Es tan sencillo como ejecutar el siguiente comando
 
@@ -33,68 +37,38 @@ Este último comando hace que el Document Root del servidor incorporado en `PHP`
 
 > El directorio `public` es el hogar de todos los archivos públicos y estáticos de la aplicación, incluidas imágenes, hojas de estilo y archivos JavaScript. También es donde vive el controlador frontal \(`index.php`\).
 
-En la siguiente página explica cómo [configurar apache](https://symfony.com/doc/current/setup/web_server_configuration.html) para que pueda servir aplicaciones en `Symfony`.
-
 [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
-![](assets/symfony.png)
+![Portada](assets/image-20211229121947511.png)
 
 Si abres el proyecto con **Visual Studio Code**, verás la siguiente estructura  
 
 ![](assets/visual-studio.png)
 
-Como ves, automáticamente crea un repositorio git.
-
-> NOTA:
+> **GIT**
 >
-> `composer create-project` permite crear nuevos proyectos a partir de un paquete existente. Es el equivalente a `git clone` y `composer install`
+> Podéis crearos un repositorio en git para esta práctica
 
-La estructura del proyecto te debe sonar porque es muy parecida a la que hemos creado en el resto de prácticas.
-
-## Primeros pasos
+## 1.2 Primeros pasos
 
 Antes que nada, vamos a analizar el archivo `index.php`
 
 ```php
-//Crea el núcleo de Symfony
-$kernel = new Kernel($env, $debug);
-//Recoge la petición al servidor
-$request = Request::createFromGlobals();
-//El kernel realiza el tratamiento de la petición enrutándola
-$response = $kernel->handle($request);
-//Devuelve la petición al cliente
-$response->send();
-//Termina el kernel
-$kernel->terminate($request, $response);
-```
-
-El archivo `index.php` es bien sencillo:   
-1. Recoge la petición  
-2. Es procesada por el kernel  
-3. La devuelve al cliente.
-
-Es el equivalente al controlador frontal de Slim:
-
-```php
 <?php
-use \Psr\Http\Message\ServerRequestInterface as Request;
-use \Psr\Http\Message\ResponseInterface as Response;
 
-require 'vendor/autoload.php';
+use App\Kernel;
 
-$app = new \Slim\App;
-$app->get('/hello/{name}', function (Request $request, Response $response, array $args) {
-    $name = $args['name'];
-    $response->getBody()->write("Hello, $name");
+require_once dirname(__DIR__).'/vendor/autoload_runtime.php';
 
-    return $response;
-});
-$app->run();
+return function (array $context) {
+    return new Kernel($context['APP_ENV'], (bool) $context['APP_DEBUG']);
+};
+
 ```
 
+Es un poco extraño, ¿no?. Pero no nos hemos de preocupar porque este archivo no vamos a modificarlo nunca.
 
-
-### Vamos a ver algunos ejemplos básicos.
+### 1.2.3 Vamos a ver algunos ejemplos básicos.
 
 La página por defecto `home` \(/\) de `Symfony` es "_Welcome to Symfony_", porque todavía no hemos configurado ninguna ruta para que nos devuelva otro contenido. El proceso de crear una nueva ruta, consta de dos partes: definir la ruta y escribir el controlador asociado a la misma:
 
@@ -115,12 +89,12 @@ Y en Symfony se definen en el archivo `config/routes.yaml`
 Descomentadlo:
 
 ```yaml
-index:
+index: 
     path: /
     defaults: { _controller: 'App\Controller\DefaultController::index' }
 ```
 
-Esto define una `ruta` llamada `index` para el `path` **/** y el controlador que va a tratar la petición en ese path, en este caso el método `index` de la clase `DefaultController`
+Esto define  una `ruta` llamada `index` para el `path` **/** y el controlador que va a tratar la petición en ese path, en este caso el método `index` de la clase `DefaultController`
 
 Ahora cread un archivo `DefaultController.php` en `src/Controller/`
 
@@ -139,7 +113,6 @@ class DefaultController
         return new Response('Hello!');
     }
 }
-?>
 ```
 
 Si todo va bien, ya tenéis creada la página de inicio de vuestra web.
@@ -151,7 +124,7 @@ Vamos a crear una segunda página que muestre un número aleatorio en la ruta `/
 ```yaml
 lucky_number:
     path: /lucky/number
-    defaults: { _controller: 'App\Controller\LuckyController::numberAction' }
+    controller: App\Controller\LuckyController::numberAction
 ```
 
 Y creamos el script php en `src/Controller/` con el nombre `LuckyController.php`
@@ -175,7 +148,6 @@ class LuckyController
         );
     }
 }
-?>
 ```
 
 Si todo va bien, mostrará la siguiente página al visitar la url [http://localhost:8000/lucky/number](http://localhost:8000/lucky/number)
@@ -227,10 +199,21 @@ class BlogController
         );
     }
 }
-?>
 ```
 
-## Separar la presentación de la lógica
+Si visitamos la página [http://127.0.0.1:8000/blog](http://127.0.0.1:8000/blog), aparecerá una lista con todas las entradas de blog 
+
+![lista de entradas](assets/image-20211229123913358.png)
+
+
+
+
+
+Si vistamos la página [http://127.0.0.1:8000/blog/5](http://127.0.0.1:8000/blog/5), por ejemplo, aparecerá la entrada de blog con id `5`
+
+![Entrada de blog](assets/image-20211229124115628.png)
+
+## 1.4 Separar la presentación de la lógica
 
 Vamos a usar el motor de plantillas `twig` usado por `Symfony`. Primero hemos de instalarlo con `composer`
 
@@ -243,11 +226,11 @@ Ahora creamos dos nuevas rutas:
 ```yaml
 blog_list_twig:
     path:     /blogtwig
-    defaults: { _controller: 'App\Controller\BlogControllerTwig::list' }
+    controller: App\Controller\BlogTwigController::list
 
 blog_show_twig:
     path:     /blogtwig/{entryId}
-    defaults: { _controller: 'App\Controller\BlogControllerTwig::show' }
+    controller: App\Controller\BlogTwigController::show
 ```
 
 Creamos las plantillas `twig`
@@ -264,22 +247,21 @@ Creamos las plantillas `twig`
 <html><body>
 <ul>
   {% for i in range(1, 10) %}
-      <li>Entrada {{ i }}</li>,
+      <li>Entrada {{ i }}</li>
   {% endfor %}
 </ul>
 </body></html>
 ```
 
-Y modificamos un poco el controlador para que use estas plantillas:
+Y **creamos un nuevo controlador** para que use estas plantillas:
 
 ```php
 <?php
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class BlogControllerTwig extends AbstractController
+class BlogTwigController extends AbstractController
 {
     public function list()
     {
@@ -291,7 +273,6 @@ class BlogControllerTwig extends AbstractController
     }
 
 }
-?>
 ```
 
 ---
