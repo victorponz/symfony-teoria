@@ -213,7 +213,7 @@ Si vistamos la página [http://127.0.0.1:8000/blog/5](http://127.0.0.1:8000/blog
 
 ![Entrada de blog](assets/image-20211229124115628.png)
 
-## 1.4 Separar la presentación de la lógica
+## 1.3 Separar la presentación de la lógica
 
 Vamos a usar el motor de plantillas `twig` usado por `Symfony`. Primero hemos de instalarlo con `composer`
 
