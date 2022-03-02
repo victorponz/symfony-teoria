@@ -1,0 +1,10 @@
+# src/Resources/config/doctrine/Category.orm.yml
+App\Entity\Category:
+    type: entity
+    # ...
+    oneToMany:
+        products:
+            targetEntity: App\Entity\Product
+            mappedBy: category
+# Don't forget to initialize the collection in
+# the __construct() method of the entity

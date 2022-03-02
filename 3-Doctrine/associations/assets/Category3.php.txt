@@ -1,0 +1,18 @@
+// src/Entity/Category.php
+
+// ...
+class Category
+{
+    // ...
+
+    public function addProduct(Product $product)
+    {
+        if ($this->products->contains($product)) {
+            return;
+        }
+
+        $this->products[] = $product;
+        // set the *owning* side!
+        $product->setCategory($this);
+    }
+}

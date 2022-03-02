@@ -1,0 +1,11 @@
+use Symfony\Component\Form\FormBuilderInterface;
+
+public function buildForm(FormBuilderInterface $builder, array $options)
+{
+  $builder
+    ->add('task')
+    ->add('dueDate')
+    ->add('agreeTerms', CheckboxType::class, array('mapped' => false))
+    ->add('save', SubmitType::class)
+    ;
+}

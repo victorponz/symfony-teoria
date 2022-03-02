@@ -1,0 +1,10 @@
+// src/Controller/DefaultController.php
+use App\Form\TaskType;
+
+public function new()
+{
+  $task = ...;
+  $form = $this->createForm(TaskType::class, $task);
+
+  // ...
+}

@@ -1,0 +1,13 @@
+// src/Repository/ProductRepository.php
+public function findOneByIdJoinedToCategory($productId)
+{
+    return $this->createQueryBuilder('p')
+        // p.category refers to the "category" property on product
+        ->innerJoin('p.category', 'c')
+        // selects all the category data to avoid the query
+        ->addSelect('c')
+        ->andWhere('p.id = :id')
+        ->setParameter('id', $productId)
+        ->getQuery()
+        ->getOneOrNullResult();
+}

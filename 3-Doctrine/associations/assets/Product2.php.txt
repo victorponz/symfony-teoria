@@ -1,0 +1,15 @@
+use App\Entity\Product;
+// ...
+
+public function showAction($id)
+{
+    $product = $this->getDoctrine()
+        ->getRepository(Product::class)
+        ->find($id);
+
+    // ...
+
+    $categoryName = $product->getCategory()->getName();
+
+    // ...
+}

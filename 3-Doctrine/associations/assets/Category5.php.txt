@@ -1,0 +1,8 @@
+// src/Entity/Category.php
+
+// ...
+
+/**
+ * @ORM\OneToMany(targetEntity="App\Entity\Product", mappedBy="category", orphanRemoval=true)
+ */
+private $products;

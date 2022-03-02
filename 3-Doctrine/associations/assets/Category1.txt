@@ -1,0 +1,19 @@
+// src/Entity/Category.php
+// ...
+
+class Category
+{
+    /**
+     * @ORM\Id
+     * @ORM\GeneratedValue
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string")
+     */
+    private $name;
+
+    // ... getters and setters
+}

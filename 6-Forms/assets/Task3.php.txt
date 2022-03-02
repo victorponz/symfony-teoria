@@ -1,0 +1,10 @@
+public function new()
+{
+  $task = new Task();
+
+  $form = $this->createFormBuilder($task)
+    ->add('task')
+    ->add('dueDate', null, array('widget' => 'single_text'))
+    ->add('save', SubmitType::class)
+    ->getForm();
+}

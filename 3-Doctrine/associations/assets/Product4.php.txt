@@ -1,0 +1,9 @@
+$product = $this->getDoctrine()
+    ->getRepository(Product::class)
+    ->find($id);
+
+$category = $product->getCategory();
+
+// prints "Proxies\AppEntityCategoryProxy"
+dump(get_class($category));
+die();

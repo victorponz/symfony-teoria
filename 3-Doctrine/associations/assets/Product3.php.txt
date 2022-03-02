@@ -1,0 +1,10 @@
+public function showProductsAction($id)
+{
+    $category = $this->getDoctrine()
+        ->getRepository(Category::class)
+        ->find($id);
+
+    $products = $category->getProducts();
+
+    // ...
+}

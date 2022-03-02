@@ -1,0 +1,14 @@
+// src/Entity/Category.php
+
+// ...
+class Category
+{
+    // ...
+
+    public function removeProduct(Product $product)
+    {
+        $this->products->removeElement($product);
+        // set the owning side to null
+        $product->setCategory(null);
+    }
+}
