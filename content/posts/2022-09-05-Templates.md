@@ -16,7 +16,7 @@ En este manual, aprenderás cómo escribir plantillas poderosas que pueden ser u
 
 ## Plantillas
 
-Una plantilla es simplemente un archivo de texto que puede generar cualquier formato basado en texto \(`HTML`, `XML`, `CSV`, `LaTeX` ...\). El tipo de plantilla más familiar es una plantilla en `PHP`: un archivo de texto analizado por `PHP` que contiene una combinación de texto y código `PHP`:
+Una plantilla es simplemente un archivo de texto que puede generar cualquier formato basado en texto ()`HTML`, `XML`, `CSV`, `LaTeX` ...). El tipo de plantilla más familiar es una plantilla en `PHP`: un archivo de texto analizado por `PHP` que contiene una combinación de texto y código `PHP`:
 
 ```php
 <?php
@@ -70,13 +70,14 @@ Twig define tres tipos de sintaxis especial:
 
 `{% ...%}`
 
-"Hace algo": una ** tag ** que controla la lógica de la plantilla; se usa para ejecutar sentencias como for-loops por ejemplo.
+"Hace algo": un **tag** que controla la lógica de la plantilla; se usa para ejecutar sentencias como `for-loops` por ejemplo.
 
 `{# ... #}`
 
 "Comenta algo": es el equivalente de PHP a `/* comment */` . Se usa para agregar comentarios de una o varias líneas. El contenido de los comentarios no estará incluido en las páginas representadas.
 
-Twig también contiene ** filtros **, que modifican el contenido antes de ser procesados. 
+Twig también contiene **filtros** que modifican el contenido antes de ser procesados. 
+
 Lo siguiente hace que la variable de `title` sea mayúscula antes de la representación:
 
 ```php
@@ -85,11 +86,7 @@ Lo siguiente hace que la variable de `title` sea mayúscula antes de la represen
     {{ title|upper }}
 ```
 
-Twig viene con una larga lista de [tags](https://twig.symfony.com/doc/2.x/tags/index.html), [filtros](https://twig.symfony.com/doc/2.x/filters/index.html) y [funciones](https://twig.symfony.com/doc/2.x/functions/index.html) que están disponibles por defecto. Incluso puedes agregar tus propios filtros _personalizados_, funciones \(y más\) a través de [Twig Extensions](http://symfony.com/doc/current/templating/twig_extension.html).
-
-El código `Twig` es similar al código `PHP`, con diferencias sutiles y agradables. El siguiente  ejemplo usa una etiqueta estándar `for`  y la función de `cycle()` para imprimir diez etiquetas `div`, alternando clases `odd` y `even`:
-
-Twig viene con una larga lista de [tags](https://twig.symfony.com/doc/2.x/tags/index.html), [filtros](https://twig.symfony.com/doc/2.x/filters/index.html) y [funciones](https://twig.symfony.com/doc/2.x/functions/index.html) que están disponibles por defecto. Incluso puedes agregar tus propios filtros _personalizados_, funciones \(y más\) a través de [Twig Extensions](http://symfony.com/doc/current/templating/twig_extension.html).
+Twig viene con una larga lista de [tags](https://twig.symfony.com/doc/3.x/tags/index.html), [filtros](https://twig.symfony.com/doc/3.x/templates.html#filters) y [funciones](https://twig.symfony.com/doc/3.x/functions/index.html) que están disponibles por defecto. Incluso puedes agregar tus propios filtros _personalizados_, funciones y más a través de [Twig Extensions](https://symfony.com/doc/6.4/templates.html#templates-twig-extension).
 
 El código `Twig` es similar al código `PHP`, con diferencias sutiles y agradables. El siguiente  ejemplo usa una etiqueta estándar `for`  y la función de `cycle()` para imprimir diez etiquetas `div`, alternando clases `odd` y `even`:
 
@@ -128,7 +125,7 @@ Y mientras estamos en desarrollo, Twig es lo suficientemente inteligente como pa
 
 ## Herencia de plantillas y layouts
 
-La mayoría de las veces, las plantillas en un proyecto comparten elementos comunes, como el encabezado, pie de página, barra lateral o más. En Symfony, se piensa en este problema de manera diferente: una plantilla puede ser decorada por otra. Esto funciona exactamente lo mismo que las clases de PHP: la herencia de la plantilla te permite construir una plantilla base de "layout" que contiene todos los elementos comunes de tu sitio definidos como ** blocks ** \(piensa en una "clase PHP con métodos base"\). Una plantilla hija puede extender el diseño base y sobreescribir cualquiera de sus bloques \(piensa en "subclase PHP" que sobreescribe ciertos métodos de su clase principal"\).
+La mayoría de las veces, las plantillas en un proyecto comparten elementos comunes, como el encabezado, pie de página, barra lateral o más. En Symfony, se piensa en este problema de manera diferente: una plantilla puede ser decorada por otra. Esto funciona exactamente lo mismo que las clases de PHP: la herencia de la plantilla te permite construir una plantilla base de "layout" que contiene todos los elementos comunes de tu sitio definidos como **blocks** (piensa en una "clase PHP con métodos base"\). Una plantilla hija puede extender el diseño base y sobreescribir cualquiera de sus bloques (piensa en "subclase PHP" que sobreescribe ciertos métodos de su clase principal").
 
 Primero, crea un archivo de diseño base:
 
