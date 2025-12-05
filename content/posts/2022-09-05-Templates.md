@@ -127,7 +127,7 @@ Y mientras estamos en desarrollo, Twig es lo suficientemente inteligente como pa
 
 La mayoría de las veces, las plantillas en un proyecto comparten elementos comunes, como el encabezado, pie de página, barra lateral o más. En Symfony, se piensa en este problema de manera diferente: una plantilla puede ser decorada por otra. Esto funciona exactamente lo mismo que las clases de PHP: la herencia de la plantilla te permite construir una plantilla base de "layout" que contiene todos los elementos comunes de tu sitio definidos como **blocks** (piensa en una "clase PHP con métodos base"\). Una plantilla hija puede extender el diseño base y sobreescribir cualquiera de sus bloques (piensa en "subclase PHP" que sobreescribe ciertos métodos de su clase principal").
 
-Primero, crea un archivo de diseño base:
+Primero, crea un archivo de diseño base: 
 
 ```jinja
 {# templates/base.html.twig #}
