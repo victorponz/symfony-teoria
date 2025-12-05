@@ -43,7 +43,7 @@ Una plantilla es simplemente un archivo de texto que puede generar cualquier for
 
 Pero `Symfony` incluye un lenguaje de plantillas aún más poderoso llamado `Twig`. Twig te permite escribir plantillas concisas y legibles que son más amigables para los diseñadores web y, de varias maneras, más poderoso que las plantillas `PHP`:
 
-```html
+```jinja
 <!-- Plantilla -->
 <!DOCTYPE html>
 <html>
@@ -90,7 +90,7 @@ Twig viene con una larga lista de [tags](https://twig.symfony.com/doc/3.x/tags/i
 
 El código `Twig` es similar al código `PHP`, con diferencias sutiles y agradables. El siguiente  ejemplo usa una etiqueta estándar `for`  y la función de `cycle()` para imprimir diez etiquetas `div`, alternando clases `odd` y `even`:
 
-```html
+```jinja
 {# TWIG #}
 
 {% for i in 1..10 %}
@@ -107,7 +107,7 @@ A lo largo de este artículo, se mostrarán ejemplos de plantillas tanto en Twig
 Las plantillas Twig están diseñadas para ser simples y no procesarán etiquetas PHP. Esto es así por diseño: el sistema de plantillas Twig está destinado a expresar la presentación, no la lógica del programa. Cuanto más uses Twig, más apreciarás y te beneficiarás de esta distinción. Y por supuesto, serás amado por diseñadores web en todas partes.  
 Twig también puede hacer cosas que PHP no puede, como el control de espacios en blanco, sandboxing, escapado automático de HTML, escape de salida contextual manual, y la inclusión de funciones personalizadas y filtros que solo afectan a las plantillas. Twig contiene pequeñas características que hacen que escribir plantillas sea más fácil y más conciso. Toma el siguiente ejemplo, que combina un bucle con una declaración _if_:
 
-```html
+```jinja
 {# TWIG #}
 <ul>
     {% for user in users if user.active %}
@@ -129,7 +129,7 @@ La mayoría de las veces, las plantillas en un proyecto comparten elementos comu
 
 Primero, crea un archivo de diseño base:
 
-```html
+```jinja
 {# templates/base.html.twig #}
 <!DOCTYPE html>
 <html>
